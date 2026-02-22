@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account{% endblock %}
+
+
+{% block content %}
+  <div class="section-title">Create Account</div>
+
+  <div class="app-card">
+    <form method="POST" action="{{ url_for('register') }}">
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input
+          type="email"
+          name="email"
+          class="form-control"
+          placeholder="you@nyu.edu"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          type="password"
+          name="password"
+          class="form-control"
+          placeholder="Create a password"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input
+          type="password"
+          name="confirm_password"
+          class="form-control"
+          placeholder="Confirm password"
+          required
+        />
+      </div>
+
+      <button type="submit" class="btn btn-dark w-100">
+        Create Account
+      </button>
+
+      <div class="text-center mt-3">
+        <span class="small text-muted-app">
+          Already have an account?
+        </span>
+        <a class="small text-decoration-none" href="{{ url_for('login') }}">
+          Sign in
+        </a>
+      </div>
+
+    </form>
+  </div>
+{% endblock %}
