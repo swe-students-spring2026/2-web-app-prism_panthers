@@ -8,7 +8,7 @@
 
   <div class="app-card">
     <!-- real form -->
-    <form method="POST" action="{{ url_for('login') }}">
+    <form method="POST" action="{{ url_for('auth_profile.login_submit') }}">
       <div class="mb-3">
         <label class="form-label">Email</label>
         <input
@@ -43,10 +43,10 @@
     </a>
 
     <div class="d-flex justify-content-between mt-3">
-      <a class="small text-decoration-none" href="{{ url_for('register') }}">
+      <a class="small text-decoration-none" href="{{ url_for('auth_profile.register') }}">
         Create account
       </a>
-      <a class="small text-decoration-none" href="{{ url_for('forgot_password') }}">
+      <a class="small text-decoration-none" href="{{ url_for('auth_profile.forgot_password') }}">
         Forgot password?
       </a>
     </div>
