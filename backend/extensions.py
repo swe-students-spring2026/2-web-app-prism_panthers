@@ -15,3 +15,11 @@ def init_extensions(app):
 
     mongo_client = MongoClient(app.config["MONGO_URI"])
     db = mongo_client[app.config["DB_NAME"]]
+
+    from modules.auth_profile.models import User
+    from modules.auth_profile.database import find_user_by_id
+
+    @login_manager.user_loader
+    def load_user(user_id):
+        doc = find_user_by_id(user_id)
+        return User.from_doc(doc)
