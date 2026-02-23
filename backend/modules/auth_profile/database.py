@@ -1,17 +1,16 @@
 """Auth & profile database operations."""
 
 from bson.objectid import ObjectId
-from extensions import db
+import extensions
 
 
 # ── helpers ──────────────────────────────────────────────
 
 def _users():
-    return db["users"]
-
+    return extensions.db["users"]
 
 def _password_resets():
-    return db["password_resets"]
+    return extensions.db["password_resets"]
 
 
 # ── user CRUD ────────────────────────────────────────────
