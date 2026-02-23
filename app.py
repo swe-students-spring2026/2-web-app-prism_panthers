@@ -309,7 +309,7 @@ def search():
     return render_template("internship/search.html", internships=internships)
 
 #Add internship
-@app.route("/internships/new", methods=["GET", "POST"])
+@app.route("/internships/add", methods=["GET", "POST"])
 @login_required
 def new_internship():
     if request.method == "POST":
