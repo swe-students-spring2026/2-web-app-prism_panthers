@@ -46,6 +46,11 @@ def update_user_profile(user_id: str, updates: dict):
     )
 
 
+def delete_user(user_id: str):
+    _users().delete_one({"_id": ObjectId(user_id)})
+    _password_resets().delete_many({"user_id": user_id})
+
+
 # ── password reset tokens ───────────────────────────────
 
 def insert_reset_token(user_id: str, token: str, expires_at):

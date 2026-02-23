@@ -38,6 +38,11 @@ def ui_register():
 def ui_update_password():
     return render_template("auth/update_password.html")
 
+@app.route("/update-password-demo", methods=["POST"])
+def update_password_demo():
+    flash("Password updated successfully.", "success")
+    return redirect(url_for("ui_profile"))
+
 @app.route("/ui/profile")
 def ui_profile():
     return render_template(
@@ -47,6 +52,40 @@ def ui_profile():
         offers=1,
         rejected=4
     )
+    
+@app.route("/ui/edit-profile")
+def ui_edit_profile():
+    return render_template("profile/edit_profile.html")
+
+@app.route("/ui/update-profile", methods=["POST"])
+def ui_update_profile():
+    flash("Profile successfully updated.", "success")
+    return redirect(url_for("ui_profile"))
+
+@app.route("/ui/change-photo", methods=["POST"])
+def demo_change_photo():
+    flash("Photo changed successfully.", "success")
+    return redirect(url_for("ui_profile"))
+
+@app.route("/ui/update-resume", methods=["POST"])
+def ui_update_resume():
+    flash("Resume updated successfully.", "success")
+    return redirect(url_for("ui_profile"))
+
+@app.route("/ui/update-links", methods=["POST"])
+def ui_update_links():
+    flash("Links updated successfully.", "success")
+    return redirect(url_for("ui_profile"))
+
+@app.route("/ui/delete-profile")
+def ui_delete_profile():
+    return render_template("profile/delete_profile.html")
+
+@app.route("/ui/delete-account", methods=["POST"])
+def delete_account_demo():
+    flash("Account deleted successfully.", "success")
+    return redirect(url_for("login"))
+
 
 @app.route("/ui/apply")
 def ui_apply():
@@ -75,7 +114,7 @@ def ui_search():
 def ui_add():
     return render_template("internship/add.html")
 
-@app.route("/ui/edit")
+@app.route("/ui/edit-intern")
 def ui_edit():
     internship = {
         "company": "Netflix",
@@ -99,6 +138,8 @@ class User(UserMixin):
         
 @login_manager.user_loader
 def load_user(user_id):
+    if users_collection is None:
+        return None
     user_data = users_collection.find_one({"_id": ObjectId(user_id)})
     if user_data:
         return User(user_data)
@@ -215,6 +256,16 @@ def profile():
         rejected=rejected
     )
     
+#delete account
+@app.route("/delete-account", methods=["POST"])
+@login_required
+def delete_account():
+    users_collection.delete_one({"_id": ObjectId(current_user.id)})
+    logout_user()
+    flash("Account deleted successfully.", "success")
+    return redirect(url_for("login"))
+
+
 #Apply
 @app.route("/")
 @login_required
@@ -258,7 +309,7 @@ def search():
     return render_template("internship/search.html", internships=internships)
 
 #Add internship
-@app.route("/internships/new", methods=["GET", "POST"])
+@app.route("/internships/add", methods=["GET", "POST"])
 @login_required
 def new_internship():
     if request.method == "POST":
