@@ -65,6 +65,22 @@ def reset_password(token: str, new_password: str, confirm_password: str) -> tupl
     return True, "Password updated!"
 
 
+# ── Change password (logged-in user) ────────────────────
+
+def change_password(user_id: str, current_password: str, new_password: str, confirm_password: str) -> tuple[bool, str]:
+    """Change password for a logged-in user. Returns (success, message)."""
+    if new_password != confirm_password:
+        return False, "Passwords do not match."
+
+    doc = db.find_user_by_id(user_id)
+    if not doc or not check_password_hash(doc["password"], current_password):
+        return False, "Current password is incorrect."
+
+    hashed = generate_password_hash(new_password)
+    db.update_user_password(user_id, hashed)
+    return True, "Password updated!"
+
+
 # ── Profile ─────────────────────────────────────────────
 
 def get_profile(user_id: str) -> dict | None:
@@ -74,9 +90,14 @@ def get_profile(user_id: str) -> dict | None:
 
 def update_profile(user_id: str, data: dict) -> tuple[bool, str]:
     """Update allowed profile fields. Returns (success, message)."""
-    allowed = {"email"}
+    allowed = {"email", "full_name", "university", "major", "grad_year", "bio"}
     updates = {k: v for k, v in data.items() if k in allowed and v}
     if not updates:
         return False, "Nothing to update."
     db.update_user_profile(user_id, updates)
     return True, "Profile updated!"
+
+
+def delete_account(user_id: str):
+    """Delete the user account and related data."""
+    db.delete_user(user_id)

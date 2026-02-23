@@ -91,6 +91,7 @@ def reset_password_submit(token):
 def view_profile():
     from extensions import db as mongo_db
 
+    user = service.get_profile(current_user.id)
     internships = mongo_db["internships"]
     uid = current_user.id
 
@@ -101,6 +102,7 @@ def view_profile():
 
     return render_template(
         "profile/profile.html",
+        user=user,
         total=total,
         interviews=interviews,
         offers=offers,
@@ -111,7 +113,8 @@ def view_profile():
 @auth_profile_bp.get("/profile/edit")
 @login_required
 def edit_profile():
-    return render_template("profile/edit_profile.html")
+    user = service.get_profile(current_user.id)
+    return render_template("profile/edit_profile.html", user=user)
 
 
 @auth_profile_bp.post("/profile/edit")
@@ -121,8 +124,45 @@ def edit_profile_submit():
     flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
 
+<<<<<<< HEAD
 @auth_profile_bp.get("/")
 def index():
     if current_user.is_authenticated:
         return redirect(url_for("auth_profile.view_profile"))
     return redirect(url_for("auth_profile.login"))
+=======
+
+@auth_profile_bp.get("/profile/update-password")
+@login_required
+def update_password():
+    return render_template("auth/update_password.html")
+
+
+@auth_profile_bp.post("/profile/update-password")
+@login_required
+def update_password_submit():
+    ok, msg = service.change_password(
+        current_user.id,
+        request.form["current_password"],
+        request.form["new_password"],
+        request.form["confirm_password"],
+    )
+    flash(msg, "success" if ok else "danger")
+    return redirect(url_for("auth_profile.view_profile") if ok else url_for("auth_profile.update_password"))
+
+
+@auth_profile_bp.get("/profile/delete")
+@login_required
+def delete_profile():
+    return render_template("profile/delete_profile.html")
+
+
+@auth_profile_bp.post("/profile/delete")
+@login_required
+def delete_profile_submit():
+    service.delete_account(current_user.id)
+    logout_user()
+    flash("Your account has been deleted.", "warning")
+    return redirect(url_for("auth_profile.login"))
+
+>>>>>>> af46af77b2400c37da764ff75089d352587353a9

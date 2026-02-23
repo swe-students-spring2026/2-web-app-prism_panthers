@@ -29,15 +29,15 @@
     <div class="flex-grow-1">
 
       <div class="fw-bold fs-5">
-        Full name <span class="text-muted-app">★</span>
+        {{ user.get('full_name', display_email) }} <span class="text-muted-app">★</span>
       </div>
 
       <div class="mt-2">
-        University / Major
+        {{ user.get('university', 'University') }} / {{ user.get('major', 'Major') }}
       </div>
 
       <div class="text-muted-app">
-        Graduation year
+        {{ user.get('grad_year', 'Graduation year') }}
       </div>
 
     </div>
@@ -46,15 +46,13 @@
   <!-- Bio -->
   <div class="mt-4">
     <p class="mb-0">
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      {{ user.get('bio', 'No bio yet. Edit your profile to add one.') }}
     </p>
   </div>
 
   <!-- Edit Button -->
   <div class="mt-4">
-    <a href="/ui/edit-profile" class="btn btn-dark w-100">
+    <a href="{{ url_for('auth_profile.edit_profile') }}" class="btn btn-dark w-100">
       Edit profile
     </a>
   </div>
