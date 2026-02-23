@@ -61,7 +61,7 @@
     <!-- Bottom Nav with demo routes -->
     <nav class="app-nav">
       <div class="app-shell d-flex justify-content-around">
-        <a class="app-navlink {% if request.path.startswith('/ui/profile') %}active{% endif %}" href="/ui/profile">
+        <a class="app-navlink {% if request.path.startswith('/profile') %}active{% endif %}" href="{{ url_for('auth_profile.view_profile') }}">
           <i class="bi bi-person"></i>
           <span>Profile</span>
         </a>
