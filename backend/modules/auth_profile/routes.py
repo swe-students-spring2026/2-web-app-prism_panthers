@@ -124,13 +124,6 @@ def edit_profile_submit():
     flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
 
-<<<<<<< HEAD
-@auth_profile_bp.get("/")
-def index():
-    if current_user.is_authenticated:
-        return redirect(url_for("auth_profile.view_profile"))
-    return redirect(url_for("auth_profile.login"))
-=======
 
 @auth_profile_bp.get("/profile/update-password")
 @login_required
@@ -164,5 +157,3 @@ def delete_profile_submit():
     logout_user()
     flash("Your account has been deleted.", "warning")
     return redirect(url_for("auth_profile.login"))
-
->>>>>>> af46af77b2400c37da764ff75089d352587353a9
