@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block subtitle %}Your dashboard{% endblock %}
+{% block content %}
+
+  <!-- demo email -->
+  {% set display_email = current_user.email if current_user.is_authenticated else "example@gmail.com" %}
+
+  <!-- Profile -->
+<div class="app-card mb-4">
+
+  <div class="d-flex gap-3">
+
+    <!-- Profile Photo -->
+    <div style="
+        width:120px;
+        height:120px;
+        border-radius:50%;
+        background:#ddd;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-weight:600;
+        color:#555;">
+      Profile Photo
+    </div>
+
+    <!-- Name + School Info -->
+    <div class="flex-grow-1">
+
+      <div class="fw-bold fs-5">
+        Full name <span class="text-muted-app">★</span>
+      </div>
+
+      <div class="mt-2">
+        University / Major
+      </div>
+
+      <div class="text-muted-app">
+        Graduation year
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bio -->
+  <div class="mt-4">
+    <p class="mb-0">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+
+  <!-- Edit Button -->
+  <div class="mt-4">
+    <a href="/ui/edit-profile" class="btn btn-dark w-100">
+      Edit profile
+    </a>
+  </div>
+
+</div>
+
+  <!-- Status -->
+  <div class="section-title">Overview</div>
+
+  <div class="stat-grid mb-4">
+    <div class="stat-tile">
+      <div class="stat-num">{{ total }}</div>
+      <div class="stat-label">Applications</div>
+    </div>
+
+    <div class="stat-tile">
+      <div class="stat-num">{{ interviews }}</div>
+      <div class="stat-label">Interviews</div>
+    </div>
+
+    <div class="stat-tile">
+      <div class="stat-num">{{ offers }}</div>
+      <div class="stat-label">Offers</div>
+    </div>
+
+    <div class="stat-tile">
+      <div class="stat-num">{{ rejected }}</div>
+      <div class="stat-label">Rejected</div>
+    </div>
+  </div>
+
+ 
+  <!-- Resume -->
+  <div class="section-title">Resume</div>
+
+  <div class="app-card mb-4">
+    <div class="d-flex align-items-center justify-content-between gap-2">
+      <div class="fw-semibold">Resume upload [PDF]</div>
+
+      <!-- Demo update button (POST) -->
+      <form method="POST" action="/ui/update-resume" class="m-0">
+        <button type="submit" class="btn btn-dark btn-sm">Update</button>
+      </form>
+    </div>
+
+    <!-- preview -->
+    <div class="resume-preview mt-3">
+      <iframe
+        src="{{ url_for('static', filename='resume.pdf') }}"
+        title="Resume preview"
+        class="resume-iframe"
+      ></iframe>
+    </div>
+
+    <div class="mt-2 d-flex justify-content-between">
+      <a class="small text-decoration-none" href="{{ url_for('static', filename='resume_demo.pdf') }}" target="_blank">
+        Open full PDF
+      </a>
+      <span class="small text-muted-app">Scroll inside preview</span>
+    </div>
+  </div>
+
+  <!-- Links -->
+  <div class="section-title">Links</div>
+
+  <div class="app-card">
+    <div class="d-flex justify-content-between align-items-start gap-3">
+      <div class="flex-grow-1">
+        <div class="mb-2">
+          Website URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
+        </div>
+
+        <div class="mb-2">
+          LinkedIn URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
+        </div>
+
+        <div class="mb-0">
+          Portfolio URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
+        </div>
+      </div>
+
+      <!-- Demo edit links button -->
+      <form method="POST" action="/ui/update-links" class="m-0">
+        <button type="submit" class="btn btn-dark btn-sm">Edit links</button>
+      </form>
+    </div>
+  </div>
+
+{% endblock %}
