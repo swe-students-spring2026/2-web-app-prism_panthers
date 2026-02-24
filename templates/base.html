@@ -66,7 +66,7 @@
           <span>Profile</span>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/ui/apply') %}active{% endif %}" href="/ui/apply">
+        <a class="app-navlink {% if request.path.startswith('/ui/apply') %}active{% endif %}" href="{{ url_for('listings.home') }}">
           <i class="bi bi-house-door"></i>
           <span>Apply</span>
         </a>
@@ -75,12 +75,12 @@
           <i class="bi bi-plus-lg"></i>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/ui/applied') %}active{% endif %}" href="/ui/applied">
+        <a class="app-navlink {% if request.path.startswith('/ui/applied') %}active{% endif %}" href="{{ url_for('listings.list_applications') }}">
           <i class="bi bi-envelope-paper"></i>
           <span>Applied</span>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/ui/search') %}active{% endif %}" href="/ui/search">
+        <a class="app-navlink {% if request.path.startswith('/ui/search') %}active{% endif %}" href="{{ url_for('listings.search') }}">
           <i class="bi bi-search"></i>
           <span>Search</span>
         </a>
