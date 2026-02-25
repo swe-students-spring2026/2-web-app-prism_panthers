@@ -31,7 +31,6 @@ def home():
     )
 
 @listings_bp.get("/applied")
-@login_required
 def list_applications():
     data = service.list_applications(
         user_id=current_user.id,
@@ -59,7 +58,7 @@ def list_applications():
 def search():
     data = service.list_applications(
         user_id=current_user.id,
-        view="applied",
+        view="search",
         query=request.args.get("q", ""),
         sort=request.args.get("sort", "deadline_asc"),
         page=request.args.get("page", "1"),

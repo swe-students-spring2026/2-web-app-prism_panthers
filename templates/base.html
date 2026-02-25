@@ -71,12 +71,12 @@
           <span>Apply</span>
         </a>
 
-        <a class="app-navlink app-navlink--plus {% if request.path.startswith('/ui/add') %}active{% endif %}" href="/ui/add" aria-label="Add">
+        <a class="app-navlink app-navlink--plus {% if request.path.startswith('/applications/add') %}active{% endif %}" href="/applications/add" aria-label="Add">
           <i class="bi bi-plus-lg"></i>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/ui/applied') %}active{% endif %}" href="{{ url_for('listings.list_applications') }}">
-          <i class="bi bi-envelope-paper"></i>
+        <a class="app-navlink {% if request.path.startswith('/applications/applied') %}active{% endif %}" href="/applications/applied">
+         <i class="bi bi-envelope-paper"></i>
           <span>Applied</span>
         </a>
 
