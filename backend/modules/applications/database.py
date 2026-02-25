@@ -7,7 +7,7 @@ def applications_collection():
 
 def insert_application(application):
     #insert new application and return _id
-    return applications_collection().insert_one(application.todocument())
+    return applications_collection().insert_one(application.to_document())
 
 def find_application_by_id(application_id):
     #find application by _id return doc
