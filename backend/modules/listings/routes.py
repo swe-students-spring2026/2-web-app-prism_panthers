@@ -31,7 +31,6 @@ def home():
     )
 
 @listings_bp.get("/applied")
-@login_required
 def list_applications():
     data = service.list_applications(
         user_id=current_user.id,
