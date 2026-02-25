@@ -33,6 +33,11 @@ def edit_submit(application_id):
     return redirect(url_for("applications.detail", application_id=application_id))
 
 
+@applications_bp.get("/<application_id>/delete")
+def delete_confirmation(application_id):
+    # TODO: fetch the internship for deletion
+    return render_template("internship/delete_internship.html", internship={})
+
 @applications_bp.post("/<application_id>/delete")
 def delete(application_id):
     # TODO: delete application from DB
