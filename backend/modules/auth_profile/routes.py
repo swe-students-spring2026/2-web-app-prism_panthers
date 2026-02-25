@@ -121,3 +121,41 @@ def edit_profile_submit():
     flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
 
+@auth_profile_bp.get("/profile/update-password")
+@login_required
+def update_password():
+    return render_template("auth/update_password.html")
+
+
+@auth_profile_bp.post("/profile/update-password")
+@login_required
+def update_password_submit():
+    ok, msg = service.change_password(
+        current_user.id,
+        request.form["current_password"],
+        request.form["new_password"],
+        request.form["confirm_password"],
+    )
+    flash(msg, "success" if ok else "danger")
+    return redirect(url_for("auth_profile.view_profile") if ok else url_for("auth_profile.update_password"))
+
+
+@auth_profile_bp.get("/profile/delete")
+@login_required
+def delete_profile():
+    return render_template("profile/delete_profile.html")
+
+
+@auth_profile_bp.post("/profile/delete")
+@login_required
+def delete_profile_submit():
+    service.delete_account(current_user.id)
+    logout_user()
+    flash("Your account has been deleted.", "warning")
+    return redirect(url_for("auth_profile.login"))
+
+@auth_profile_bp.get("/")
+def index():
+    if current_user.is_authenticated:
+        return redirect(url_for("auth_profile.view_profile"))
+    return redirect(url_for("auth_profile.login"))

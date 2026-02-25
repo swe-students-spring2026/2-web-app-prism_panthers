@@ -12,7 +12,7 @@ def get_application(application_id):
     return Application.from_document(doc)
 
 def update_application(application_id,updates):
-    database.update_application_by_id(application_id,updates)
+    database.update_application_by_id(application_id, updates)
     return get_application(application_id)
 
 def delete_application(application_id):
