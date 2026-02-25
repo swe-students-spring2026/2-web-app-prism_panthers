@@ -6,11 +6,11 @@ from . import service
 applications_bp = Blueprint("applications", __name__, url_prefix="/applications")
 
 
-@applications_bp.get("/new")
+@applications_bp.get("/add")
 def create_form():
     return render_template("internship/add.html")
 
-@applications_bp.post("/new")
+@applications_bp.post("/add")
 def create_submit():
     # TODO: insert application into DB
     service.create_application(
