@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Applied{% endblock %}
+{% block subtitle %}Already Applied{% endblock %}
+
+{% block content %}
+
+<div class="section-title">Already Applied</div>
+
+{% if internships %}
+  
+  <div class="d-grid gap-3">
+
+    {% for internship in internships %}
+      <div class="app-card">
+
+        <div class="item-row">
+          <div class="item-main">
+            <p class="item-title truncate">
+              {{ internship.company }}
+            </p>
+
+            <p class="item-sub truncate">
+              {{ internship.role }}
+            </p>
+          </div>
+
+          <div>
+            <span class="status-pill">
+              {{ internship.status }}
+            </span>
+          </div>
+        </div>
+
+        <div class="mt-3 d-flex justify-content-between">
+          <a href="#" class="btn btn-outline-dark btn-sm">
+            Edit
+          </a>
+
+          <form method="POST" action="#">
+            <button type="submit" class="btn btn-outline-danger btn-sm">
+              Delete
+            </button>
+          </form>
+        </div>
+
+      </div>
+    {% endfor %}
+
+  </div>
+
+{% else %}
+
+  <div class="app-card text-center py-4">
+    <div class="text-muted-app mb-2">
+      No internships yet.
+    </div>
+    <a href="/applications/new" class="btn btn-dark btn-sm">
+      Add Internship
+    </a>
+  </div>
+
+{% endif %}
+
+{% endblock %}
