@@ -3,7 +3,7 @@
 from extensions import db
 
 def _internships():
-    return db["internships"]
+    return db["internship"]
 
 def find_applications(user_id: str, query: str | None, status: str | None, exclude_status: str | None, sort_field: str, sort_order: int, page: int, per_page: int): 
     filter_query: dict = {"user_id": user_id}

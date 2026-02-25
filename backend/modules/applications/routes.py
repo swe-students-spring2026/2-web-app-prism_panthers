@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, redirect,request, url_for,flash
 from flask_login import login_required, current_user
 from . import service
-
+from modules import listings
 
 applications_bp = Blueprint("applications", __name__, url_prefix="/applications")
 
@@ -15,13 +15,13 @@ def create_submit():
     # TODO: insert application into DB
     service.create_application(
         user_id = current_user.id,
-        company_name = request.form.get("company_name"),
-        job_title=request.form.get("job_title"),
+        company_name = request.form.get("company"),
+        job_title=request.form.get("title"),
         location=request.form.get("location"),
-        salary_expectation=request.form.get("salary_expectation"),
-        application_link=request.form.get("application_link"),
+        salary_expectation=request.form.get("salary"),
+        application_link=request.form.get("link"),
         deadline=request.form.get("deadline"),
-        personal_notes=request.form.get("personal_notes"),
+        personal_notes=request.form.get("notes"),
         work_model=request.form.get("work_model"),
         status=request.form.get("status"),
     )
@@ -50,20 +50,19 @@ def edit_form(application_id):
 def edit_submit(application_id):
      # TODO: update application in DB
     updates = {
-        "company_name": request.form.get("company_name"),
-        "job_title": request.form.get("job_title"),
+        "company_name": request.form.get("company"),
+        "job_title": request.form.get("title"),
         "location": request.form.get("location"),
-        "salary_expectation": request.form.get("salary_expectation"),
-        "application_link": request.form.get("application_link"),
+        "salary_expectation": request.form.get("salary"),
+        "application_link": request.form.get("link"),
         "work_model": request.form.get("work_model"),
         "deadline": request.form.get("deadline"),
-        "personal_notes": request.form.get("personal_notes"),
+        "personal_notes": request.form.get("notes"),
         "status": request.form.get("status"),
     }
     service.update_application(application_id,updates)
-    flash("Application added Successfully","success")
-    return redirect(url_for("applications.detail", application_id=application_id))
-
+    flash("Application updated Successfully","success")
+    return redirect(url_for("listings.list_applications"))
 
 @applications_bp.post("/<application_id>/delete")
 @login_required
