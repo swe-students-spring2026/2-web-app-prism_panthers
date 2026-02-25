@@ -2,9 +2,14 @@
 {% block title %}Add Internship{% endblock %}
 {% block subtitle %}New Internship{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+{% endblock %}
+
 {% block content %}
 
 <div class="section-title">Add Internship</div>
+
 
 
 <form method="POST" action="{{ url_for('applications.create_submit') }}">
@@ -63,12 +68,66 @@
         <input type="radio" id="applicationStatus1" name="status" value="applied" />
         <label for="applicationStatus1">Applied</label>
 
-        <input type="radio" id="applicationStatus2" name="status" value="not_applied" />
-        <label for="applicationStatus2">Yet To Apply</label>
-    </div>
-    <br />
-    <input type="submit" value="Save" />
-</form>
+<div class="app-card">
+  <form method="POST"
+        action="{{ url_for('applications.create_submit') }}"
+        class="internship-form">
 
+    <div class="field">
+      <label>Company</label>
+      <input class="input" type="text" name="company" placeholder="Company Name" required>
+    </div>
+
+
+    <div class="field">
+      <label>Job Title</label>
+      <textarea class="textarea" name="title" placeholder="Job Title" required></textarea>
+    </div>
+
+    <div class="field">
+      <label>Location</label>
+      <textarea class="textarea" name="location" placeholder="Location"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Salary Expectation</label>
+      <textarea class="textarea" name="salary" placeholder="Salary Expectation"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Application Link</label>
+      <textarea class="textarea" name="link" placeholder="Application Portal Link"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Work Model</label>
+      <div class="radio-group">
+        <label><input type="radio" name="work_model" value="remote"> Remote</label>
+        <label><input type="radio" name="work_model" value="on_site"> On-site</label>
+        <label><input type="radio" name="work_model" value="hybrid"> Hybrid</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Deadline</label>
+      <input class="date-input" type="date" name="deadline">
+    </div>
+
+    <div class="field">
+      <label>Personal Notes</label>
+      <textarea class="textarea" name="notes" placeholder="Personal Notes"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Status</label>
+      <div class="radio-group">
+        <label><input type="radio" name="status" value="applied"> Applied</label>
+        <label><input type="radio" name="status" value="not_applied" checked> Yet To Apply</label>
+      </div>
+    </div>
+
+    <button type="submit" class="btn-app primary full">Save</button>
+  </form>
+</div>
 
 {% endblock %}

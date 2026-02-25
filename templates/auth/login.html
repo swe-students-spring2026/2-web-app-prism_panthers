@@ -3,27 +3,30 @@
 {% block title %}Sign In{% endblock %}
 {% block subtitle %}Welcome back{% endblock %}
 
-{% block content %}
-  <div class="section-title">Sign In</div>
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
 
-  <div class="app-card">
-    <!-- real form -->
-    <form method="POST" action="{{ url_for('auth_profile.login_submit') }}">
-      <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input
+{% block content %}
+<div class="auth-wrap">
+  <div class="auth-title">Sign In</div>
+
+  <div class="auth-card">
+    <form class="auth-form" method="POST" action="{{ url_for('auth_profile.login_submit') }}">
+      <div class="auth-field">
+        <label>Email</label>
+        <input class="auth-input"
           type="email"
           name="email"
-          class="form-control"
           placeholder="you@nyu.edu"
           required
           autofocus
         />
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input
+      <div class="auth-field">
+        <label>Password</label>
+        <input class="auth-input"
           type="password"
           name="password"
           class="form-control"
@@ -32,10 +35,11 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-dark w-100">
+      <button class="auth-btn primary full" type="submit">
         Sign In
       </button>
     </form>
+
 
     <!-- Demo button -->
     <a href="/ui/profile" class="btn btn-outline-secondary w-100 mt-2">
@@ -44,11 +48,15 @@
 
     <div class="d-flex justify-content-between mt-3">
       <a class="small text-decoration-none" href="{{ url_for('auth_profile.register') }}">
+
+    <div class="auth-links">
+      <a href="{{ url_for('auth_profile.register') }}">
         Create account
       </a>
-      <a class="small text-decoration-none" href="{{ url_for('auth_profile.forgot_password') }}">
+      <a href="{{ url_for('auth_profile.forgot_password') }}">
         Forgot password?
       </a>
     </div>
   </div>
+</div>
 {% endblock %}

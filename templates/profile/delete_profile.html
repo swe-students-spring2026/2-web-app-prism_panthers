@@ -1,15 +1,26 @@
 {% extends "base.html" %}
 {% block title %}Delete Profile{% endblock %}
-{% block subtitle %}Delete profile{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+{% endblock %}
 
 {% block content %}
+  <div class="section-title">Delete profile</div>
 
-<div class="section-title">Delete profile</div>
+  <div class="app-card">
+    <div class="delete-title">Delete your account?</div>
+    <div class="delete-hint text-muted-app">Your account will be deleted forever.</div>
 
-<div class="app-card text-center">
-  <div class="mb-3 fw-semibold">
-    Delete your account?
+    <form method="POST" action="{{ url_for('auth_profile.delete_profile_submit') }}">
+      <button type="submit" class="btn-app danger full">Delete</button>
+    </form>
+
+    <div class="delete-cancel">
+      <a class="link" href="{{ url_for('auth_profile.view_profile') }}">Cancel</a>
+    </div>
   </div>
+
 
   <div class="text-muted-app small mb-4">
     Your account will be deleted forever.

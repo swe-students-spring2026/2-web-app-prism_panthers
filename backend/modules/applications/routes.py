@@ -64,6 +64,11 @@ def edit_submit(application_id):
     flash("Application updated Successfully","success")
     return redirect(url_for("listings.list_applications"))
 
+@applications_bp.get("/<application_id>/delete")
+def delete_confirmation(application_id):
+    # TODO: fetch the internship for deletion
+    return render_template("internship/delete_internship.html", internship={})
+
 @applications_bp.post("/<application_id>/delete")
 @login_required
 def delete(application_id):

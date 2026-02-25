@@ -1,29 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Profile{% endblock %}
 {% block subtitle %}Your dashboard{% endblock %}
-{% block content %}
 
-  <!-- demo email -->
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+{% endblock %}
+
+{% block content %}
   {% set display_email = current_user.email if current_user.is_authenticated else "example@gmail.com" %}
 
   <!-- Profile -->
-<div class="app-card mb-4">
+  <div class="app-card block-space">
+    <div class="profile-header">
+      <div class="profile-avatar">Profile Photo</div>
 
-  <div class="d-flex gap-3">
+      <div class="profile-info">
+        <div class="profile-name">
+          {{ user.get('full_name', display_email) }}
+          <span class="text-muted-app">★</span>
+        </div>
 
-    <!-- Profile Photo -->
-    <div style="
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        background:#ddd;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-weight:600;
-        color:#555;">
-      Profile Photo
+        <div class="profile-school">
+          {{ user.get('university', 'University') }} / {{ user.get('major', 'Major') }}
+        </div>
+
+        <div class="profile-grad text-muted-app">
+          {{ user.get('grad_year', 'Graduation year') }}
+        </div>
+      </div>
     </div>
+
 
     <!-- Name + School Info -->
     <div class="flex-grow-1">
@@ -62,9 +68,23 @@
 </div>
 
   <!-- Status -->
+
+    <div class="profile-bio">
+      {{ user.get('bio', 'No bio yet. Edit your profile to add one.') }}
+    </div>
+
+    <div class="profile-actions">
+      <a href="{{ url_for('auth_profile.edit_profile') }}" class="btn-app primary full">
+        Edit profile
+      </a>
+    </div>
+  </div>
+
+  <!-- Overview -->
+
   <div class="section-title">Overview</div>
 
-  <div class="stat-grid mb-4">
+  <div class="stat-grid block-space">
     <div class="stat-tile">
       <div class="stat-num">{{ total }}</div>
       <div class="stat-label">Applications</div>
@@ -86,22 +106,19 @@
     </div>
   </div>
 
- 
   <!-- Resume -->
   <div class="section-title">Resume</div>
 
-  <div class="app-card mb-4">
-    <div class="d-flex align-items-center justify-content-between gap-2">
-      <div class="fw-semibold">Resume upload [PDF]</div>
+  <div class="app-card block-space">
+    <div class="row-between">
+      <div class="card-title">Resume upload [PDF]</div>
 
-      <!-- Demo update button (POST) -->
-      <form method="POST" action="/ui/update-resume" class="m-0">
-        <button type="submit" class="btn btn-dark btn-sm">Update</button>
+      <form method="POST" action="/ui/update-resume">
+        <button type="submit" class="btn-app primary small">Update</button>
       </form>
     </div>
 
-    <!-- preview -->
-    <div class="resume-preview mt-3">
+    <div class="resume-preview block-tight">
       <iframe
         src="{{ url_for('static', filename='resume.pdf') }}"
         title="Resume preview"
@@ -109,11 +126,11 @@
       ></iframe>
     </div>
 
-    <div class="mt-2 d-flex justify-content-between">
-      <a class="small text-decoration-none" href="{{ url_for('static', filename='resume_demo.pdf') }}" target="_blank">
+    <div class="row-between block-tight">
+      <a class="link" href="{{ url_for('static', filename='resume_demo.pdf') }}" target="_blank">
         Open full PDF
       </a>
-      <span class="small text-muted-app">Scroll inside preview</span>
+      <span class="small-muted">Scroll inside preview</span>
     </div>
   </div>
 
@@ -121,26 +138,16 @@
   <div class="section-title">Links</div>
 
   <div class="app-card">
-    <div class="d-flex justify-content-between align-items-start gap-3">
-      <div class="flex-grow-1">
-        <div class="mb-2">
-          Website URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
-        </div>
-
-        <div class="mb-2">
-          LinkedIn URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
-        </div>
-
-        <div class="mb-0">
-          Portfolio URL &nbsp; <a href="#" class="text-decoration-underline">[Link]</a>
-        </div>
+    <div class="row-between align-top">
+      <div class="link-list">
+        <div>Website URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
+        <div>LinkedIn URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
+        <div>Portfolio URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
       </div>
 
-      <!-- Demo edit links button -->
-      <form method="POST" action="/ui/update-links" class="m-0">
-        <button type="submit" class="btn btn-dark btn-sm">Edit links</button>
+      <form method="POST" action="/ui/update-links">
+        <button type="submit" class="btn-app primary small">Edit links</button>
       </form>
     </div>
   </div>
-
 {% endblock %}
