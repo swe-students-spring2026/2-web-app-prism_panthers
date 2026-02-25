@@ -52,6 +52,9 @@ def list_applications(user_id: str, view: str, query: str | None, sort: str | No
         status = "Yet to Apply"
     elif v == "applied": 
         exclude_status = "Yet to Apply"
+    elif v == "search":
+        status = None
+        exclude_status = None
     
     cursor, total = db.find_applications(user_id=user_id,
         query=(query or "").strip() or None,
