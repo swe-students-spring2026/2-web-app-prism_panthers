@@ -4,7 +4,7 @@ from flask import Blueprint, render_template, request
 listings_bp = Blueprint("listings", __name__, url_prefix="/applications")
 
 
-@listings_bp.get("/")
+@listings_bp.get("/applied")
 def list_applications():
     query = request.args.get("q", "")
     sort_by = request.args.get("sort", "deadline")
