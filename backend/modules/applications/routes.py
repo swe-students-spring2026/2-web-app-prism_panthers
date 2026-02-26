@@ -6,11 +6,11 @@ from modules import listings
 applications_bp = Blueprint("applications", __name__, url_prefix="/applications")
 
 
-@applications_bp.get("/new")
+@applications_bp.get("/add")
 def create_form():
     return render_template("internship/add.html")
 
-@applications_bp.post("/new")
+@applications_bp.post("/add")
 def create_submit():
     # TODO: insert application into DB
     service.create_application(
@@ -63,6 +63,11 @@ def edit_submit(application_id):
     service.update_application(application_id,updates)
     flash("Application updated Successfully","success")
     return redirect(url_for("listings.list_applications"))
+
+@applications_bp.get("/<application_id>/delete")
+def delete_confirmation(application_id):
+    # TODO: fetch the internship for deletion
+    return render_template("internship/delete_internship.html", internship={})
 
 @applications_bp.post("/<application_id>/delete")
 @login_required

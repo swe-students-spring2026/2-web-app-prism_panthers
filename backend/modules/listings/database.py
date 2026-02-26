@@ -10,7 +10,7 @@ def find_applications(user_id: str, query: str | None, status: str | None, exclu
     if status is not None: 
         filter_query["status"] = status 
     
-    if exclude_status is not None: 
+    elif exclude_status is not None: 
         filter_query["status"] = {"$ne": exclude_status}
 
     if query:
