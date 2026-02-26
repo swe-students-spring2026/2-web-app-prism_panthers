@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Edit Internship{% endblock %}
+{% block subtitle %}Edit Internship{% endblock %}
+
+{% block content %}
+
+<div class="section-title">Edit Internship</div>
+
+<form method="POST" action="{{ url_for('applications.edit_submit', application_id=internship.id) }}">
+    <input type="text" id="company" name="company" placeholder="Company Name"/>
+    <br />
+    <textarea type="text" id="title" name="title" placeholder="Job Title"></textarea>
+    <br />
+    <textarea type="text" id="location" name="location" placeholder="Location"></textarea>
+    <br />
+    <textarea type="text" id="salary" name="salary" placeholder="Salary Expectation"></textarea>
+    <br />
+    <textarea type="text" id="link" name="link" placeholder="Application Portal Link"></textarea>
+    <br />
+    <div>
+        <input type="radio" id="work_model1" name="work_model" value="remote" />
+        <label for="work_model1">Remote</label>
+
+        <input type="radio" id="work_model2" name="work_model" value="on_site" />
+        <label for="work_model2">On-site</label>
+  
+        <input type="radio" id="work_model3" name="work_model" value="hybrid" />
+        <label for="work_model3">Hybrid</label>
+    </div>
+    <br />
+    <input type="date" id="deadline" name="deadline">
+    <br />
+    <textarea type="text" id="notes" name="notes" placeholder="Personal Notes"></textarea>
+    <br />
+    <div>
+        <input type="radio" id="applicationStatus1" name="status" value="applied" />
+        <label for="applicationStatus1">Applied</label>
+
+        <input type="radio" id="applicationStatus2" name="status" value="not_applied" />
+        <label for="applicationStatus2">Yet To Apply</label>
+    </div>
+    <br />
+    <input type="submit" value="Save" />
+</form>
+
+
+{% endblock %}
