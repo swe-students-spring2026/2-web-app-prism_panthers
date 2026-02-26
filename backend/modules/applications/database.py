@@ -15,8 +15,8 @@ def find_application_by_id(application_id):
 
 def update_application_by_id(application_id,updates):
     #update application with set "updates", return
-    return applications_collection().update_one({"_id":application_id},{"$set":updates})
+    return applications_collection().update_one({"_id":ObjectId(application_id)},{"$set":updates})
 
 def delete_application_by_id(application_id):
-    return applications_collection().delete_one({"_id":application_id})
+    return applications_collection().delete_one({"_id":ObjectId(application_id)})
 

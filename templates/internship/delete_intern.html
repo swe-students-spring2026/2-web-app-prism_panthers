@@ -8,9 +8,8 @@
 
 <h2>Are you sure you want to delete the {{ internship.company }} internship?</h2>
 
-<form method="post" action="{{ url_for('applications.delete', application_id=internship.id) }}">
-    <button type="submit" name="confirm" value="yes">Yes, delete</button>
-    <a href="{{ url_for('applications.detail', application_id=internship.id) }}" class="button">No, go back</a>
+<form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
+  <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
 </form>
 
 {% endblock %}
