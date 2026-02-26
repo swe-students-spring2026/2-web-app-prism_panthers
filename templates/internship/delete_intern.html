@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+{% block subtitle %}Delete Internship{% endblock %}
+
+{% block content %}
+
+<div class="section-title">Delete Internship</div>
+
+<h2>Are you sure you want to delete the {{ internship.company }} internship?</h2>
+
+<form method="post" action="{{ url_for('applications.delete', application_id=internship.id) }}">
+    <button type="submit" name="confirm" value="yes">Yes, delete</button>
+    <a href="{{ url_for('applications.detail', application_id=internship.id) }}" class="button">No, go back</a>
+</form>
+
+{% endblock %}
