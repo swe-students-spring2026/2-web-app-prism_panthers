@@ -1,4 +1,3 @@
-{% endblock %}{% extends "base.html" %}
 {% block title %}Edit Internship{% endblock %}
 {% block subtitle %}Edit Internship{% endblock %}
 
@@ -6,7 +5,7 @@
 
 <div class="section-title">Edit Internship</div>
 
-<form method="POST" action="{{ url_for('applications.edit_submit', application_id=internship.id) }}">
+<form method="POST" action="{{ url_for('applications.edit_submit', application_id=internship._id) }}">
     <input type="text" id="company" name="company" placeholder="Company Name"/>
     <br />
     <textarea type="text" id="title" name="title" placeholder="Job Title"></textarea>
