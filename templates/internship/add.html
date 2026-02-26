@@ -6,12 +6,24 @@
 
 <div class="section-title">Add Internship</div>
 
+
+<form method="POST" action="{{ url_for('applications.create_submit') }}">
+    <input type="text" id="company" name="company" placeholder="Company Name"/>
+    <br />
+    <textarea type="text" id="title" name="title" placeholder="Job Title"></textarea>
+
+<form method="POST" action="{{ url_for('create_post') }}">
+    <input type="text" id="company" name="company" placeholder="Company"/>
+    <br />
+    <textarea type="text" id="role" name="role" placeholder="Role"></textarea>
+<br />
+
 <form method="POST" action="{{ url_for('applications.create_submit') }}">
     <input type="text" id="company" name="company" placeholder="Company Name"/>
     <br />
     <textarea type="text" id="title" name="title" placeholder="Job Title"></textarea>
     <br />
-    <textarea type="text" id="location" name="location" placeholder="Location"></textarea>
+ <textarea type="text" id="location" name="location" placeholder="Location"></textarea>
     <br />
     <textarea type="text" id="salary" name="salary" placeholder="Salary Expectation"></textarea>
     <br />
@@ -21,6 +33,7 @@
         <input type="radio" id="work_model1" name="work_model" value="remote" />
         <label for="work_model1">Remote</label>
 
+
         <input type="radio" id="work_model2" name="work_model" value="on_site" />
         <label for="work_model2">On-site</label>
   
@@ -28,9 +41,23 @@
         <label for="work_model3">Hybrid</label>
     </div>
     <br />
+
+        <input type="radio" id="workType1" name="type" value="remote" />
+        <label for="workType1">Remote</label>
+
+        <input type="radio" id="work_model2" name="work_model" value="on_site" />
+        <label for="work_model2">On-site</label>
+  
+        <input type="radio" id="work_model3" name="work_model" value="hybrid" />
+        <label for="work_model3">Hybrid</label>
+    </div>
+    <br />
+ <input type="date" id="date" name="date">
+ <br />
+
     <input type="date" id="deadline" name="deadline">
     <br />
-    <textarea type="text" id="notes" name="notes" placeholder="Personal Notes"></textarea>
+ <textarea type="text" id="notes" name="notes" placeholder="Personal Notes"></textarea>
     <br />
     <div>
         <input type="radio" id="applicationStatus1" name="status" value="applied" />

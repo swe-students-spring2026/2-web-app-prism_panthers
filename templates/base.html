@@ -75,7 +75,9 @@
           <i class="bi bi-plus-lg"></i>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/ui/applied') %}active{% endif %}" href="{{ url_for('listings.list_applications') }}">
+      <a class="app-navlink {% if request.path.startswith('/ui/applied') %}active{% endif %}" href="{{ url_for('listings.list_applications') }}">
+
+        <a class="app-navlink {% if request.path.startswith('/applications/applied') %}active{% endif %}" href="/applications/applied">
           <i class="bi bi-envelope-paper"></i>
           <span>Applied</span>
         </a>

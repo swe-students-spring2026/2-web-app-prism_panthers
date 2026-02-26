@@ -5,7 +5,6 @@ from modules.listings import service
 
 listings_bp = Blueprint("listings", __name__, url_prefix="/applications")
 
-
 @listings_bp.get("/")
 @login_required
 def home(): 
@@ -32,6 +31,8 @@ def home():
 
 @listings_bp.get("/applied")
 @login_required
+
+@listings_bp.get("/applied")
 def list_applications():
     data = service.list_applications(
         user_id=current_user.id,

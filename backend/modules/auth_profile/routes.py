@@ -121,6 +121,7 @@ def edit_profile_submit():
     flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
 
+
 @auth_profile_bp.get("/profile/update-password")
 @login_required
 def update_password():
@@ -158,4 +159,8 @@ def delete_profile_submit():
 def index():
     if current_user.is_authenticated:
         return redirect(url_for("auth_profile.view_profile"))
+
     return redirect(url_for("auth_profile.login"))
+
+
+
