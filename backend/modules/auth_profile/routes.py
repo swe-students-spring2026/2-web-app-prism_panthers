@@ -158,3 +158,8 @@ def delete_profile_submit():
     flash("Your account has been deleted.", "warning")
     return redirect(url_for("auth_profile.login"))
 
+@auth_profile_bp.get("/")
+def index():
+    if current_user.is_authenticated:
+        return redirect(url_for("auth_profile.view_profile"))
+    return redirect(url_for("auth_profile.login"))
