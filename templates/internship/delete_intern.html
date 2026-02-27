@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Delete{% endblock %}
+{% block subtitle %}Delete Internship{% endblock %}
+
+{% block content %}
+
+<div class="section-title">Delete Internship</div>
+
+<h2>Are you sure you want to delete the {{ internship.company }} internship?</h2>
+
+<form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
+  <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+</form>
+
+{% endblock %}
