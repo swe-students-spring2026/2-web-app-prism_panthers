@@ -2,16 +2,20 @@
 
 {% block title %}Create Account{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='auth.css') }}">
+{% endblock %}
 
 {% block content %}
-  <div class="section-title">Create Account</div>
+<div class="auth-wrap">
+  <div class="auth-title">Create Account</div>
 
-  <div class="app-card">
-    <form method="POST" action="{{ url_for('auth_profile.register_submit') }}">
+  <div class="auth-card">
+    <form class="auth-form" method="POST" action="{{ url_for('auth_profile.register_submit') }}">
 
-      <div class="mb-3">
-        <label class="form-label">Email</label>
-        <input
+      <div class="auth-field">
+        <label>Email</label>
+        <input class="auth-input"
           type="email"
           name="email"
           class="form-control"
@@ -20,9 +24,9 @@
         />
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Password</label>
-        <input
+      <div class="auth-field">
+        <label>Password</label>
+        <input class="auth-input"
           type="password"
           name="password"
           class="form-control"
@@ -31,9 +35,9 @@
         />
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Confirm Password</label>
-        <input
+      <div class="auth-field">
+        <label>Confirm Password</label>
+        <input class="auth-input"
           type="password"
           name="confirm_password"
           class="form-control"
@@ -42,19 +46,17 @@
         />
       </div>
 
-      <button type="submit" class="btn btn-dark w-100">
+      <button  class="auth-btn primary full" type="submit">
         Create Account
       </button>
+    </form>
 
-      <div class="text-center mt-3">
-        <span class="small text-muted-app">
-          Already have an account?
-        </span>
-        <a class="small text-decoration-none" href="{{ url_for('auth_profile.login') }}">
+      <div class="auth-foot">
+        Already have an account?
+        <a href="{{ url_for('auth_profile.login') }}">
           Sign in
         </a>
       </div>
-
-    </form>
   </div>
+</div>
 {% endblock %}
