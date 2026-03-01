@@ -3,45 +3,43 @@
 {% block subtitle %}Edit Internship{% endblock %}
 
 {% block content %}
-
 <div class="section-title">Edit Internship</div>
 
 <form method="POST" action="{{ url_for('applications.edit_submit', application_id=internship._id) }}">
-    <input type="text" id="company" name="company" placeholder="Company Name"/>
+    <input type="text" id="company" name="company" value="{{ internship.company_name or '' }}" placeholder="Company Name"/>
     <br />
-    <textarea type="text" id="title" name="title" placeholder="Job Title"></textarea>
+    <textarea id="title" name="title" placeholder="Job Title">{{ internship.job_title or '' }}</textarea>
     <br />
-    <textarea type="text" id="location" name="location" placeholder="Location"></textarea>
+    <textarea id="location" name="location" placeholder="Location">{{ internship.location or '' }}</textarea>
     <br />
-    <textarea type="text" id="salary" name="salary" placeholder="Salary Expectation"></textarea>
+    <textarea id="salary" name="salary" placeholder="Salary Expectation">{{ internship.salary_expectation or '' }}</textarea>
     <br />
-    <textarea type="text" id="link" name="link" placeholder="Application Portal Link"></textarea>
+    <textarea id="link" name="link" placeholder="Application Portal Link">{{ internship.application_link or '' }}</textarea>
     <br />
     <div>
-        <input type="radio" id="work_model1" name="work_model" value="remote" />
+        <input type="radio" id="work_model1" name="work_model" value="remote" {% if internship.work_model == 'remote' %}checked{% endif %}/>
         <label for="work_model1">Remote</label>
 
-        <input type="radio" id="work_model2" name="work_model" value="on_site" />
+        <input type="radio" id="work_model2" name="work_model" value="on_site" {% if internship.work_model == 'on_site' %}checked{% endif %}/>
         <label for="work_model2">On-site</label>
   
-        <input type="radio" id="work_model3" name="work_model" value="hybrid" />
+        <input type="radio" id="work_model3" name="work_model" value="hybrid" {% if internship.work_model == 'hybrid' %}checked{% endif %}/>
         <label for="work_model3">Hybrid</label>
     </div>
     <br />
-    <input type="date" id="deadline" name="deadline">
+    <input type="date" id="deadline" name="deadline" value="{{ internship.deadline or '' }}">
     <br />
-    <textarea type="text" id="notes" name="notes" placeholder="Personal Notes"></textarea>
+    <textarea id="notes" name="notes" placeholder="Personal Notes">{{ internship.personal_notes or '' }}</textarea>
     <br />
     <div>
-        <input type="radio" id="applicationStatus1" name="status" value="applied" />
+        <input type="radio" id="applicationStatus1" name="status" value="applied" {% if internship.status == 'applied' %}checked{% endif %}/>
         <label for="applicationStatus1">Applied</label>
 
-        <input type="radio" id="applicationStatus2" name="status" value="not_applied" />
+        <input type="radio" id="applicationStatus2" name="status" value="not_applied" {% if internship.status == 'not_applied' %}checked{% endif %}/>
         <label for="applicationStatus2">Yet To Apply</label>
     </div>
     <br />
     <input type="submit" value="Save" />
 </form>
-
 
 {% endblock %}
