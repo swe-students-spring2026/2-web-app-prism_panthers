@@ -10,9 +10,9 @@
 
 <div class="section-title">Yet to Apply</div>
 
-{% if internships %}
+{% if internships | selectattr('status', 'equalto', 'not_applied') | list %}
   <div class="list-stack">
-    {% for internship in internships %}
+    {% for internship in internships if internship.status == 'not_applied' %}
       <div class="app-card">
         <div class="item-row">
           <div class="item-main">
