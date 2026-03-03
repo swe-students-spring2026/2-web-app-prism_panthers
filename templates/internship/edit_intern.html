@@ -2,6 +2,10 @@
 {% block title %}Edit Internship{% endblock %}
 {% block subtitle %}Edit Internship{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="section-title">Edit Internship</div>
 
@@ -38,8 +42,12 @@
         <input type="radio" id="applicationStatus2" name="status" value="not_applied" {% if internship.status == 'not_applied' %}checked{% endif %}/>
         <label for="applicationStatus2">Yet To Apply</label>
     </div>
-    <br />
-    <input type="submit" value="Save" />
+  </div>
+
+  <button type="submit" class="btn-app primary full">
+    Save Changes
+  </button>
+
 </form>
 
 {% endblock %}
