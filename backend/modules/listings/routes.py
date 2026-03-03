@@ -32,6 +32,7 @@ def home():
 @listings_bp.get("/applied")
 @login_required
 
+
 @listings_bp.get("/applied")
 def list_applications():
     data = service.list_applications(

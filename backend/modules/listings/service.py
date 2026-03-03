@@ -49,9 +49,9 @@ def list_applications(user_id: str, view: str, query: str | None, sort: str | No
 
     v = (view or "").strip().lower()
     if v == "home": 
-        status = "Yet to Apply"
+        status = "not_applied"
     elif v == "applied": 
-        exclude_status = "Yet to Apply"
+        exclude_status = "not_applied"
     elif v == "search":
         status = None
         exclude_status = None
