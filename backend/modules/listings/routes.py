@@ -53,6 +53,29 @@ def list_applications():
         sort_options=service.allowed_sort_options(),
     )
 
+@listings_bp.get("/apply")
+def list_not_applied_applications():
+    data = service.list_applications(
+        user_id=current_user.id,
+        view="apply",
+        query=request.args.get("q", ""),
+        sort=request.args.get("sort", "deadline_asc"),
+        page=request.args.get("page", "1"),
+        per_page=request.args.get("per_page", "10"),
+    )
+
+    return render_template(
+        "internship/apply.html",
+        internships=data["items"],
+        query=data["query"],
+        sort=data["sort"],
+        page=data["page"],
+        per_page=data["per_page"],
+        total=data["total"],
+        total_pages=data["total_pages"],
+        sort_options=service.allowed_sort_options(),
+    )
+
 @listings_bp.get("/search")
 @login_required
 def search():
