@@ -1,6 +1,3 @@
-/* static/styles.css */
-
-/* ---- Design tokens ---- */
 :root {
   --shell-max: 420px;
   --pad-x: 16px;
@@ -17,7 +14,20 @@
   --shadow: 0 10px 25px rgba(17, 24, 39, 0.06);
 }
 
-/* ---- Layout ---- */
+* {box-sizing :border-box;}
+html, body {height: 100%;}
+
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Arial , sans-serif;
+  line-height: 1.35;
+}
+
+a {
+  color: inherit;
+}
+
+/* Layout */
 .app-body {
   background: var(--bg);
   color: var(--text);
@@ -32,10 +42,35 @@
 
 .app-main {
   padding-top: 12px;
-  padding-bottom: 92px; /* space for bottom nav */
+  padding-bottom: 92px; 
 }
 
-/* ---- App Bar ---- */
+.btn-app {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 800;
+  border: 2px solid #111;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  background: #fff;
+  color: #111;
+}
+
+.btn-app.primary {
+  background: #111;
+  color: #fff;
+}
+
+.btn-app.primary:hover { background: #000; }
+
+.btn-app.full { width: 100%; }
+
+/* App Bar */
 .app-bar {
   position: sticky;
   top: 0;
@@ -48,6 +83,26 @@
 .app-bar .app-shell {
   padding-top: 12px;
   padding-bottom: 12px;
+}
+
+.app-bar-row{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.app-bar-left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.app-bar-title{
+  display: flex;
+  align-items: column;
+  min-width:0 ;
 }
 
 .app-mark {
@@ -74,7 +129,7 @@
   line-height: 1.1;
 }
 
-/* ---- Bottom Nav ---- */
+/* Bottom Nav */
 .app-nav {
   position: fixed;
   left: 0;
@@ -85,6 +140,12 @@
   border-top: 1px solid var(--border);
   padding: 10px 0 12px;
   z-index: 1030;
+}
+
+.app-nav-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .app-navlink {
@@ -119,11 +180,11 @@
   height: 52px;
   border-radius: 18px;
   background: #111;
-  color: #fff !important;
+  color: #fff;
   display: grid;
   place-items: center;
   padding: 0;
-  margin-top: -22px; /* makes the + button float */
+  margin-top: -22px; /* button float */
   box-shadow: var(--shadow);
 }
 
@@ -135,7 +196,7 @@
   background: #000;
 }
 
-/* ---- Reusable UI helpers ---- */
+/*  UI helpers  */
 .app-card {
   background: var(--card);
   border: 1px solid var(--border);
@@ -157,13 +218,7 @@
   color: var(--muted);
 }
 
-.btn,
-.form-control,
-.form-select {
-  border-radius: var(--radius-md);
-}
-
-/* ---- Internship list item styling (optional helper classes) ---- */
+/* Internship list  */
 .item-row {
   display: flex;
   justify-content: space-between;
@@ -198,7 +253,7 @@
   background: #fff;
 }
 
-/* Small “stat tiles” for your profile/homepage */
+/* Small “stat tiles” */
 .stat-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -230,12 +285,13 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
 /* Resume scroll preview */
 .resume-preview {
-  height: 320px; /* adjust to match your wireframe */
+  height: 320px; 
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  overflow: hidden; /* iframe handles scroll */
+  overflow: hidden; 
   background: #f3f4f6;
 }
 
@@ -244,3 +300,27 @@
   height: 100%;
   border: 0;
 }
+
+/* Flash messages*/
+.flash-stack {
+  padding-top: 12px;
+  display: grid;
+  gap: 10px;
+}
+
+.flash {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-left: 4px solid #111;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: var(--text);
+  box-shadow: var(--shadow);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.flash-success { border-left-color: #16a34a; }
+.flash-danger  { border-left-color: #dc2626; }
+.flash-warning { border-left-color: #f59e0b; }
+.flash-info    { border-left-color: #2563eb; }

@@ -1,0 +1,221 @@
+.block-space { margin-bottom: 16px; }
+.block-tight { margin-top: 12px; }
+
+/* Form in Add Internship */
+
+.internship-form {
+  display: grid;
+  gap: 14px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+}
+
+.input,
+.textarea,
+.date-input,
+.select {
+  width: 100%;
+  border: 2px solid #6b6b6b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
+  background: #fff;
+  color: var(--text);
+  outline: none;
+}
+
+.textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.input:focus,
+.textarea:focus,
+.date-input:focus,
+.select:focus {
+  border-color: #111;
+}
+
+.radio-group {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.radio-group label {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Buttons */
+
+.btn-app {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 800;
+  border: 2px solid #111;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+}
+
+.btn-app.primary {
+  background: #111;
+  color: #fff;
+}
+
+.btn-app.primary:hover {
+  background: #000;
+}
+
+.btn-app.small {
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.btn-app.full {
+  width: 100%;
+}
+
+.btn-app.outline {
+  background: #fff;
+  color: #111;
+}
+
+.btn-app.outline:hover {
+  background: rgba(17, 24, 39, 0.06);
+}
+
+.btn-app.danger {
+  border-color: #dc2626;
+  color: #dc2626;
+}
+
+.btn-app.danger:hover {
+  background: rgba(220, 38, 38, 0.06);
+}
+
+/* Internship List */
+
+.list-stack {
+  display: grid;
+  gap: 12px;
+}
+
+.card-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Search */
+
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.search-input {
+  flex: 1;
+  border: 2px solid #6b6b6b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 15px;
+  outline: none;
+  background: #fff;
+  color: var(--text);
+}
+
+.search-input:focus {
+  border-color: #111;
+}
+
+.search-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.search-count {
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.search-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.pager {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+}
+
+.pager-inner {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--border);
+  background: #fff;
+  border-radius: 999px;
+  padding: 8px 10px;
+}
+
+.pager-link,
+.pager-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: #111;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.pager-link:hover {
+  background: rgba(17, 24, 39, 0.06);
+}
+
+.pager-link.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.pager-label {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* Empty State */
+
+.empty-card {
+  text-align: center;
+  padding: 18px;
+}
+
+.empty-card p {
+  color: var(--muted);
+  margin-bottom: 12px;
+}

@@ -1,15 +1,33 @@
 {% extends "base.html" %}
+{% extends "base.html" %}
 {% block title %}Delete{% endblock %}
 {% block subtitle %}Delete Internship{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+{% endblock %}
 
 {% block content %}
 
 <div class="section-title">Delete Internship</div>
 
-<h2>Are you sure you want to delete the {{ internship.company }} internship?</h2>
+<div class="app-card empty-card">
 
-<form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
-  <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
-</form>
+  <p>
+    Are you sure you want to delete
+    <strong>{{ internship.company }}</strong>?
+  </p>
+
+  <div class="block-space"></div>
+
+  <form method="POST"
+        action="{{ url_for('applications.delete', application_id=internship._id) }}">
+        
+    <button type="submit" class="btn-app danger full">
+      Delete Internship
+    </button>
+  </form>
+
+</div>
 
 {% endblock %}
