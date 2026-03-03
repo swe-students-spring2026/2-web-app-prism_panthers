@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}View{% endblock %}
+{% block subtitle %}View Info{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="block-space">
+    <div class="profile-name">{{ internship.company_name or 'Unknown Company' }}</div>
+    <div class="profile-school">{{ internship.job_title or 'Untitled Position' }}</div>
+  </div>
+  
+  <div class="profile-form block-space">
+    
+    <div class="row-between align-top">
+      <div class="field">
+        <label>Location</label>
+        <div class="card-title">{{ internship.location or 'Not specified' }}</div>
+      </div>
+      
+      <div class="field">
+        <label>Work Model</label>
+        <div class="card-title">{{ internship.work_model|capitalize or 'Not specified' }}</div>
+      </div>
+    </div>
+  
+    <div class="field block-tight">
+      <label>Salary Expectation</label>
+      <div class="card-title">{{ internship.salary_expectation or 'N/A' }}</div>
+    </div>
+  
+    <div class="row-between align-top block-tight">
+      <div class="field">
+        <label>Deadline</label>
+        <div class="card-title">{{ internship.deadline or 'No deadline set' }}</div>
+      </div>
+  
+      <div class="field">
+        <label>Status</label>
+        <div class="card-title">
+          {% if internship.status == 'applied' %}
+            Applied
+          {% else %}
+            Yet To Apply
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  
+    <div class="field block-tight">
+      <label>Application Portal</label>
+      <div class="card-title">
+        {% if internship.application_link %}
+          <a href="{{ internship.application_link }}" target="_blank" class="link underline">
+            Visit Link
+          </a>
+        {% else %}
+          <span class="small-muted">No link provided</span>
+        {% endif %}
+      </div>
+    </div>
+  
+    <div class="field block-tight">
+      <label>Personal Notes</label>
+      <div class="profile-bio" style="margin-top: 0; white-space: pre-wrap;">{{ internship.personal_notes or 'No notes added.' }}</div>
+    </div>
+    
+  </div>
+  
+  <div class="profile-actions block-space">
+    <a href="{{ url_for('applications.edit_form', application_id=internship._id) }}" class="btn-app primary full">
+      Edit Internship
+    </a>
+    
+    <div class="block-tight">
+      <a href="{{ url_for('listings.home') }}" class="btn-app full">
+        Back to List
+      </a>
+    </div>
+  </div>
+{% endblock %}
