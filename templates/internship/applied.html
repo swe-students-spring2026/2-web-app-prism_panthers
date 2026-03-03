@@ -16,8 +16,13 @@
       <div class="app-card">
         <div class="item-row">
           <div class="item-main">
-            <p class="item-title truncate">{{ internship.company }}</p>
-            <p class="item-sub truncate">{{ internship.role }}</p>
+            <p class="item-title truncate">
+              {{ internship.company_name }}
+            </p>
+
+            <p class="item-sub truncate">
+              {{ internship.job_title }}
+            </p>
           </div>
           <div>
             <span class="status-pill">{{ internship.status }}</span>
