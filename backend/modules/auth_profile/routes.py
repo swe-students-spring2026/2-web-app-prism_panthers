@@ -224,10 +224,17 @@ def resume_demo():
     flash("Resume updated!", "success")
     return redirect(url_for("auth_profile.view_profile"))
 
-@auth_profile_bp.post("/profile/links-demo")
+@auth_profile_bp.get("/profile/edit-links")
 @login_required
-def links_demo():
-    flash("link updated!", "success")
+def edit_links():
+    user = service.get_profile(current_user.id)
+    return render_template("profile/edit_links.html", user=user)
+
+@auth_profile_bp.post("/profile/edit-links")
+@login_required
+def edit_links_submit():
+    ok, msg = service.update_links(current_user.id, dict(request.form))
+    flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
 
 @auth_profile_bp.get("/")
@@ -235,3 +242,4 @@ def index():
     if current_user.is_authenticated:
         return redirect(url_for("auth_profile.view_profile"))
     return redirect(url_for("auth_profile.login"))
+
