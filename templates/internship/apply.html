@@ -29,13 +29,14 @@
           </div>
         </div>
 
-        <div class="mt-3 d-flex justify-content-between">
-          <a href="{{ url_for('applications.edit_form', application_id=internship._id) }}" class="btn btn-outline-dark btn-sm">
+        <div class="card-actions">
+          <a href="{{ url_for('applications.edit_form', application_id=internship._id) }}" 
+          class="btn-app outline small">
           Edit
           </a>
 
           <form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
-            <button type="submit" class="btn btn-outline-danger btn-sm">
+            <button type="submit" class="btn-app danger small">
               Delete
             </button>
           </form>
