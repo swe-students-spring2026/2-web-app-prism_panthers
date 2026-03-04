@@ -53,4 +53,4 @@ Our InteRacker webapp helps students to stay organized, meet deadlines, and conf
 
 ## Task boards
 
-See instructions. Delete this line and place a link to the task boards here.
+[Task board](https://github.com/orgs/swe-students-spring2026/projects/55/views/1)
