@@ -80,6 +80,7 @@
     </div>
   </div>
 
+
   <!-- Overview -->
 
   <div class="section-title">Overview</div>
@@ -106,14 +107,15 @@
     </div>
   </div>
 
-  <!-- Resume -->
+
+<!-- Resume -->
   <div class="section-title">Resume</div>
 
   <div class="app-card block-space">
     <div class="row-between">
       <div class="card-title">Resume upload [PDF]</div>
 
-      <form method="POST" action="/ui/update-resume">
+      <form method="POST" action="{{ url_for('auth_profile.resume_demo') }}">
         <button type="submit" class="btn-app primary small">Update</button>
       </form>
     </div>
@@ -145,7 +147,7 @@
         <div>Portfolio URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
       </div>
 
-      <form method="POST" action="/ui/update-links">
+      <form method="POST" action="{{ url_for('auth_profile.links_demo') }}">
         <button type="submit" class="btn-app primary small">Edit links</button>
       </form>
     </div>
