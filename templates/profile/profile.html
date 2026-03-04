@@ -12,7 +12,11 @@
   <!-- Profile -->
   <div class="app-card block-space">
     <div class="profile-header">
-      <div class="profile-avatar">Profile Photo</div>
+      {% if user.get('profile_picture') %}
+        <img src="{{ url_for('static', filename=user.get('profile_picture')) }}" alt="Profile Photo" class="profile-avatar-img">
+      {% else %}
+        <div class="profile-avatar">Profile Photo</div>
+      {% endif %}
 
       <div class="profile-info">
         <div class="profile-name">

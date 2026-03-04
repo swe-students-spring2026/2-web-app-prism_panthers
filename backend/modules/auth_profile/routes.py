@@ -1,9 +1,18 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_user, logout_user, login_required, current_user
+from werkzeug.utils import secure_filename
+import os
 
 from modules.auth_profile import service
 
 auth_profile_bp = Blueprint("auth_profile", __name__)
+
+
+# ── Helper functions ────────────────────────────────────
+
+def allowed_file(filename):
+    """Check if the file extension is allowed."""
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in current_app.config['ALLOWED_EXTENSIONS']
 
 
 # ── Authentication ──────────────────────────────────────
@@ -120,9 +129,54 @@ def edit_profile():
 @auth_profile_bp.post("/profile/edit")
 @login_required
 def edit_profile_submit():
-    ok, msg = service.update_profile(current_user.id, dict(request.form))
+    # Handle profile picture upload
+    profile_data = dict(request.form)
+    
+    if 'profile_picture' in request.files:
+        file = request.files['profile_picture']
+        if file and file.filename and allowed_file(file.filename):
+            # Generate a unique filename
+            filename = secure_filename(file.filename)
+            unique_filename = f"{current_user.id}_{filename}"
+            
+            # Save the file
+            upload_folder = current_app.config['UPLOAD_FOLDER']
+            os.makedirs(upload_folder, exist_ok=True)
+            filepath = os.path.join(upload_folder, unique_filename)
+            file.save(filepath)
+            
+            # Store relative path in database
+            profile_data['profile_picture'] = f"uploads/profile_pics/{unique_filename}"
+        elif file and file.filename and not allowed_file(file.filename):
+            flash("Invalid file type. Allowed types: png, jpg, jpeg, gif", "danger")
+            return redirect(url_for("auth_profile.edit_profile"))
+    
+    ok, msg = service.update_profile(current_user.id, profile_data)
     flash(msg, "success" if ok else "danger")
     return redirect(url_for("auth_profile.view_profile"))
+
+
+@auth_profile_bp.post("/profile/remove-picture")
+@login_required
+def remove_profile_picture():
+    user = service.get_profile(current_user.id)
+    
+    # Delete the file if it exists
+    if user and user.get('profile_picture'):
+        filepath = os.path.join(current_app.root_path, '..', 'static', user.get('profile_picture'))
+        if os.path.exists(filepath):
+            try:
+                os.remove(filepath)
+            except Exception as e:
+                flash(f"Error deleting file: {str(e)}", "danger")
+                return redirect(url_for("auth_profile.edit_profile"))
+    
+    # Remove the profile picture from database
+    from modules.auth_profile import database as db
+    db.update_user_profile(current_user.id, {"profile_picture": ""})
+    
+    flash("Profile picture removed successfully.", "success")
+    return redirect(url_for("auth_profile.edit_profile"))
 
 
 @auth_profile_bp.get("/profile/update-password")

@@ -90,7 +90,7 @@ def get_profile(user_id: str) -> dict | None:
 
 def update_profile(user_id: str, data: dict) -> tuple[bool, str]:
     """Update allowed profile fields. Returns (success, message)."""
-    allowed = {"email", "full_name", "university", "major", "grad_year", "bio"}
+    allowed = {"email", "full_name", "university", "major", "grad_year", "bio", "profile_picture"}
     updates = {k: v for k, v in data.items() if k in allowed and v}
     if not updates:
         return False, "Nothing to update."
