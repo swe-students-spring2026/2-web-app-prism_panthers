@@ -41,31 +41,6 @@
     </div>
   </div>
 
-  <!-- Overview -->
-  <div class="section-title">Overview</div>
-
-  <div class="stat-grid block-space">
-    <div class="stat-tile">
-      <div class="stat-num">{{ total }}</div>
-      <div class="stat-label">Applications</div>
-    </div>
-
-    <div class="stat-tile">
-      <div class="stat-num">{{ interviews }}</div>
-      <div class="stat-label">Interviews</div>
-    </div>
-
-    <div class="stat-tile">
-      <div class="stat-num">{{ offers }}</div>
-      <div class="stat-label">Offers</div>
-    </div>
-
-    <div class="stat-tile">
-      <div class="stat-num">{{ rejected }}</div>
-      <div class="stat-label">Rejected</div>
-    </div>
-  </div>
-
   <!-- Resume -->
   <div class="section-title">Resume</div>
 
@@ -73,7 +48,7 @@
     <div class="row-between">
       <div class="card-title">Resume upload [PDF]</div>
 
-      <form method="POST" action="/ui/update-resume">
+      <form method="POST" action="{{ url_for('auth_profile.resume_demo') }}">
         <button type="submit" class="btn-app primary small">Update</button>
       </form>
     </div>
@@ -105,7 +80,7 @@
         <div>Portfolio URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
       </div>
 
-      <form method="POST" action="/ui/update-links">
+      <form method="POST" action="{{ url_for('auth_profile.links_demo') }}">
         <button type="submit" class="btn-app primary small">Edit links</button>
       </form>
     </div>
