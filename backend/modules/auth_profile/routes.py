@@ -158,6 +158,24 @@ def delete_profile_submit():
     flash("Your account has been deleted.", "warning")
     return redirect(url_for("auth_profile.login"))
 
+@auth_profile_bp.post("/profile/photo-demo")
+@login_required
+def photo_demo():
+    flash("Profile photo updated successfully.", "success")
+    return redirect(url_for("auth_profile.edit_profile"))
+
+@auth_profile_bp.post("/profile/resume-demo")
+@login_required
+def resume_demo():
+    flash("Resume updated!", "success")
+    return redirect(url_for("auth_profile.view_profile"))
+
+@auth_profile_bp.post("/profile/links-demo")
+@login_required
+def links_demo():
+    flash("link updated!", "success")
+    return redirect(url_for("auth_profile.view_profile"))
+
 @auth_profile_bp.get("/")
 def index():
     if current_user.is_authenticated:
