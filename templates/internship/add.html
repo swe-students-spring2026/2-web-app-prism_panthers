@@ -50,21 +50,21 @@
     </div>
 
     <div class="field">
-      <label>Deadline</label>
+      <label>Status</label>
+      <div class="radio-group">
+        <label><input type="radio" name="status" value="applied"> Applied</label>
+        <label><input type="radio" name="status" value="not_applied" checked> Yet To Apply</label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Application Deadline / Interview Date</label>
       <input class="date-input" type="date" name="deadline">
     </div>
 
     <div class="field">
       <label>Personal Notes</label>
       <textarea class="textarea" name="notes" placeholder="Personal Notes"></textarea>
-    </div>
-
-    <div class="field">
-      <label>Status</label>
-      <div class="radio-group">
-        <label><input type="radio" name="status" value="applied"> Applied</label>
-        <label><input type="radio" name="status" value="not_applied" checked> Yet To Apply</label>
-      </div>
     </div>
 
     <button type="submit" class="btn-app primary full">Save</button>
