@@ -3,7 +3,7 @@
 {% block subtitle %}Yet to Apply{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='internships\.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -25,7 +25,7 @@
             </p>
           </div>
           <div>
-            <span class="status-pill">{{ internship.deadline or 'Not specified'}}</span>
+            <span class="status-pill">{{ internship.status }}</span>
           </div>
         </div>
 
@@ -34,11 +34,10 @@
           Edit
           </a>
 
-          <form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
-            <button type="submit" class="btn btn-outline-danger btn-sm">
-              Delete
-            </button>
-          </form>
+          <a href="{{ url_for('applications.delete_confirmation', application_id=internship._id) }}"
+             class="btn-app danger small">
+            Delete
+          </a>
         </div>
       </div>
     {% endfor %}

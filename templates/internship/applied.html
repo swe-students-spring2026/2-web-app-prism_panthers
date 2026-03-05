@@ -35,9 +35,10 @@
             Edit
           </a>
 
-          <form method="POST" action="{{ url_for('applications.delete', application_id=internship._id) }}">
-            <button type="submit" class="btn-app danger small">Delete</button>
-          </form>
+          <a href="{{ url_for('applications.delete_confirmation', application_id=internship._id) }}"
+             class="btn-app danger small">
+            Delete
+          </a>
         </div>
       </div>
     {% endfor %}
