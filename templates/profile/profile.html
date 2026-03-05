@@ -45,33 +45,7 @@
     </div>
   </div>
 
-  <!-- Resume -->
-  <div class="section-title">Resume</div>
-
-  <div class="app-card block-space">
-    <div class="row-between">
-      <div class="card-title">Resume upload [PDF]</div>
-
-      <form method="POST" action="{{ url_for('auth_profile.resume_demo') }}">
-        <button type="submit" class="btn-app primary small">Update</button>
-      </form>
-    </div>
-
-    <div class="resume-preview block-tight">
-      <iframe
-        src="{{ url_for('static', filename='resume.pdf') }}"
-        title="Resume preview"
-        class="resume-iframe"
-      ></iframe>
-    </div>
-
-    <div class="row-between block-tight">
-      <a class="link" href="{{ url_for('static', filename='resume_demo.pdf') }}" target="_blank">
-        Open full PDF
-      </a>
-      <span class="small-muted">Scroll inside preview</span>
-    </div>
-  </div>
+  
   <!-- Links -->
 <div class="section-title">Links</div>
 
