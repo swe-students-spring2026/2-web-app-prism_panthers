@@ -57,6 +57,14 @@
           <div class="item-main">
             <p class="item-title truncate">{{ internship.company_name }}</p>
             <p class="item-sub truncate">{{ internship.job_title }} · {{ internship.location }}</p>
+            <p class="item-sub truncate">
+            {% if internship.status == 'not_applied' %}
+              Not Yet Applied
+            {% elif internship.status == 'applied' %}
+              Applied
+            {% else %}
+              Unknown Status
+            {% endif %}</p>
           </div>
           <div>
             <span class="status-pill">{{ internship.status }}</span>
