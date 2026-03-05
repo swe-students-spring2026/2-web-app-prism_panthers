@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Delete Application{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="section-title">Delete Application</div>
+
+<div class="app-card">
+  <div class="delete-confirm-title">Are you sure?</div>
+  <div class="delete-confirm-body">
+    You are about to permanently delete your application to
+    <strong>{{ internship.company_name }}</strong>
+    {% if internship.job_title %}
+      for <strong>{{ internship.job_title }}.</strong>
+    {% endif %}
+    This action cannot be undone.
+  </div>
+
+  <div class="delete-confirm-actions">
+    <form method="POST"
+          action="{{ url_for('applications.delete', application_id=internship._id) }}">
+      <button type="submit" class="btn-app danger full">
+        Yes, delete this application
+      </button>
+    </form>
+
+    <a href="{{ url_for('listings.list_applications') }}"
+       class="btn-app full delete-cancel-link">
+      Cancel — keep this application
+    </a>
+  </div>
+</div>
+{% endblock %}

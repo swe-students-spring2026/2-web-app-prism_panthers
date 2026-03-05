@@ -219,3 +219,26 @@
   color: var(--muted);
   margin-bottom: 12px;
 }
+/* Delete confirmation */
+
+.delete-confirm-title {
+  font-weight: 900;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.delete-confirm-body {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin-bottom: 20px;
+}
+
+.delete-confirm-actions {
+  display: grid;
+  gap: 10px;
+}
+
+.delete-cancel-link {
+  text-align: center;
+}

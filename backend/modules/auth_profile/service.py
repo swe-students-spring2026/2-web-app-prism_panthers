@@ -90,7 +90,7 @@ def get_profile(user_id: str) -> dict | None:
 
 def update_profile(user_id: str, data: dict) -> tuple[bool, str]:
     """Update allowed profile fields. Returns (success, message)."""
-    allowed = {"email", "full_name", "university", "major", "grad_year", "bio"}
+    allowed = {"email", "full_name", "university", "major", "grad_year", "bio", "profile_picture"}
     updates = {k: v for k, v in data.items() if k in allowed and v}
     if not updates:
         return False, "Nothing to update."
@@ -101,3 +101,13 @@ def update_profile(user_id: str, data: dict) -> tuple[bool, str]:
 def delete_account(user_id: str):
     """Delete the user account and related data."""
     db.delete_user(user_id)
+
+def update_links(user_id: str, data: dict) -> tuple[bool, str]:
+    """Update profile link fields (website, LinkedIn, portfolio). Returns (success, message)."""
+    allowed = {"website_url", "linkedin_url", "portfolio_url"}
+    # Allow empty strings so users can clear a link
+    updates = {k: v.strip() for k, v in data.items() if k in allowed}
+    if not updates:
+        return False, "Nothing to update."
+    db.update_user_profile(user_id, updates)
+    return True, "Links updated!"
