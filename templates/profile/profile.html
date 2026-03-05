@@ -12,7 +12,11 @@
   <!-- Profile -->
   <div class="app-card block-space">
     <div class="profile-header">
-      <div class="profile-avatar">Profile Photo</div>
+      {% if user.get('profile_picture') %}
+        <img src="{{ url_for('static', filename=user.get('profile_picture')) }}" alt="Profile Photo" class="profile-avatar-img">
+      {% else %}
+        <div class="profile-avatar">Profile Photo</div>
+      {% endif %}
 
       <div class="profile-info">
         <div class="profile-name">
@@ -68,21 +72,39 @@
       <span class="small-muted">Scroll inside preview</span>
     </div>
   </div>
-
   <!-- Links -->
-  <div class="section-title">Links</div>
+<div class="section-title">Links</div>
 
-  <div class="app-card">
-    <div class="row-between align-top">
-      <div class="link-list">
-        <div>Website URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
-        <div>LinkedIn URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
-        <div>Portfolio URL &nbsp; <a href="#" class="link underline">[Link]</a></div>
+<div class="app-card">
+  <div class="row-between align-top">
+    <div class="link-list">
+      <div>
+        Website &nbsp;
+        {% if user.get('website_url') %}
+          <a href="{{ user['website_url'] }}" class="link underline" target="_blank" rel="noopener noreferrer">{{ user['website_url'] }}</a>
+        {% else %}
+          <span class="text-muted-app">Not set</span>
+        {% endif %}
       </div>
-
-      <form method="POST" action="{{ url_for('auth_profile.links_demo') }}">
-        <button type="submit" class="btn-app primary small">Edit links</button>
-      </form>
+      <div>
+        LinkedIn &nbsp;
+        {% if user.get('linkedin_url') %}
+          <a href="{{ user['linkedin_url'] }}" class="link underline" target="_blank" rel="noopener noreferrer">{{ user['linkedin_url'] }}</a>
+        {% else %}
+          <span class="text-muted-app">Not set</span>
+        {% endif %}
+      </div>
+      <div>
+        Portfolio &nbsp;
+        {% if user.get('portfolio_url') %}
+          <a href="{{ user['portfolio_url'] }}" class="link underline" target="_blank" rel="noopener noreferrer">{{ user['portfolio_url'] }}</a>
+        {% else %}
+          <span class="text-muted-app">Not set</span>
+        {% endif %}
+      </div>
     </div>
+
+    <a href="{{ url_for('auth_profile.edit_links') }}" class="btn-app primary small">Edit links</a>
   </div>
+</div>
 {% endblock %}

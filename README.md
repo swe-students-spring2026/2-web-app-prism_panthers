@@ -52,5 +52,5 @@ Our InteRacker webapp helps students to stay organized, meet deadlines, and conf
    Visit [http://127.0.0.1:5000/login](http://127.0.0.1:5000/login)
 
 ## Task boards
-
-See instructions. Delete this line and place a link to the task boards here.
+[Task board for Sprint 1](https://github.com/orgs/swe-students-spring2026/projects/4/views/1)
+[Task board for Sprint 2](https://github.com/orgs/swe-students-spring2026/projects/55/views/1)
