@@ -3,24 +3,36 @@
 {% block subtitle %}Edit Internship{% endblock %}
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('static', filename='internships.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='internship.css') }}">
 {% endblock %}
 
 {% block content %}
 <div class="section-title">Edit Internship</div>
 
+<div class="app-card">
 <form method="POST" action="{{ url_for('applications.edit_submit', application_id=internship._id) }}">
-    <input type="text" id="company" name="company" value="{{ internship.company_name or '' }}" placeholder="Company Name"/>
-    <br />
-    <textarea id="title" name="title" placeholder="Job Title">{{ internship.job_title or '' }}</textarea>
-    <br />
-    <textarea id="location" name="location" placeholder="Location">{{ internship.location or '' }}</textarea>
-    <br />
-    <textarea id="salary" name="salary" placeholder="Salary Expectation">{{ internship.salary_expectation or '' }}</textarea>
-    <br />
-    <textarea id="link" name="link" placeholder="Application Portal Link">{{ internship.application_link or '' }}</textarea>
-    <br />
-    <div>
+    <div class="field">
+      <input class="input" type="text" name="company" value="{{ internship.company_name or '' }}" placeholder="Company Name"/>
+    </div>
+
+    <div class="field">
+      <textarea class="textarea" name="title" placeholder="Job Title">{{ internship.job_title or '' }}</textarea>
+    </div>
+
+    <div class="field">
+      <textarea class="textarea" id="location" name="location" placeholder="Location">{{ internship.location or '' }}</textarea>
+    </div>
+
+    <div class="field">
+      <textarea class="textarea" id="salary" name="salary" placeholder="Salary Expectation">{{ internship.salary_expectation or '' }}</textarea>
+    </div>
+
+    <div class="field">
+      <textarea class="textarea" id="link" name="link" placeholder="Application Portal Link">{{ internship.application_link or '' }}</textarea>
+    </div>
+
+    <div class="field">
+      <div class="radio-group">
         <input type="radio" id="work_model1" name="work_model" value="remote" {% if internship.work_model == 'remote' %}checked{% endif %}/>
         <label for="work_model1">Remote</label>
 
@@ -29,20 +41,28 @@
   
         <input type="radio" id="work_model3" name="work_model" value="hybrid" {% if internship.work_model == 'hybrid' %}checked{% endif %}/>
         <label for="work_model3">Hybrid</label>
+      </div>
     </div>
-    <br />
-    <input type="date" id="deadline" name="deadline" value="{{ internship.deadline or '' }}">
-    <br />
-    <textarea id="notes" name="notes" placeholder="Personal Notes">{{ internship.personal_notes or '' }}</textarea>
-    <br />
-    <div>
+
+    <div class="field">
+      <input class="input" type="date" id="deadline" name="deadline" value="{{ internship.deadline or '' }}">
+    </div>
+
+    <div class="field">
+      <textarea class="textarea" id="notes" name="notes" placeholder="Personal Notes">{{ internship.personal_notes or '' }}</textarea>
+    </div>
+
+    <div class ="field">
+      <div class="radio-group">
         <input type="radio" id="applicationStatus1" name="status" value="applied" {% if internship.status == 'applied' %}checked{% endif %}/>
         <label for="applicationStatus1">Applied</label>
 
         <input type="radio" id="applicationStatus2" name="status" value="not_applied" {% if internship.status == 'not_applied' %}checked{% endif %}/>
         <label for="applicationStatus2">Yet To Apply</label>
+      </div>
     </div>
-  </div>
+</div>
+
 
   <button type="submit" class="btn-app primary full">
     Save Changes
