@@ -61,7 +61,7 @@
           <span>Profile</span>
         </a>
 
-        <a class="app-navlink {% if request.path.startswith('/applications') and not request.path.startswith('/applications/applied') and not request.path.startswith('/applications/search') %}active{% endif %}"
+        <a class="app-navlink {% if request.path.startswith('/applications') and not request.path.startswith('/applications/applied') and not request.path.startswith('/applications/search') and not request.path.startswith('/applications/add') %}active{% endif %}"
           href="{{ url_for('listings.home') }}">
           <i class="bi bi-house-door"></i>
           <span>Apply</span>
